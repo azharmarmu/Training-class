@@ -14,3 +14,8 @@ int firstValue = 0;
 int secondValue = 1;
 int limit = 8//
 output => 8
+
+hint: 
+1.addition of previous two value give new value
+2. use any loop
+3. condition mustbe <= limit
