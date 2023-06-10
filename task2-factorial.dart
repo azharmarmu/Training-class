@@ -10,10 +10,11 @@
 34
 
 
+Example:
 int firstValue = 0;
 int secondValue = 1;
 int limit = 8//
-output => 8
+output => 21
 
 hint: 
 1.addition of previous two value give new value
