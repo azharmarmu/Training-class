@@ -1,22 +1,20 @@
-0
-1
-1 //firstOp
-2
-3
-5 //5thOP
-8
-13
-21 //8thop
-34
+//solution
+void main() {
+  int firstValue = 0;
+  int secondValue = 1;
 
+  int limit = 8; //Jaykumar: getting value through i/p
 
-Example:
-int firstValue = 0;
-int secondValue = 1;
-int limit = 8//
-output => 21
+  print(firstValue); // Print the first value
+  print(secondValue);
 
-hint: 
-1.addition of previous two value give new value
-2. use any loop
-3. condition mustbe <= limit
+  int output = secondValue + firstValue;
+  print(output);
+
+  for (int i = 2; i < limit; i++) {
+    firstValue = secondValue;
+    secondValue = output;
+    output = secondValue + firstValue;
+    print(output);
+  }
+}
