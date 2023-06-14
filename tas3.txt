@@ -1,7 +1,0 @@
-Do arithmetic operation using function with return type;
-
-two numbers
-a = 10, b = 20
-
-pass and get added, subracted, divided and multipled 
-value from the respective function and print all values
