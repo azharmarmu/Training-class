@@ -1,19 +1,3 @@
-/*
-
-Create a class called Doctor which has properties like, 
-docID, docName, specilization, workingHour. 
-methods like isAvailable(return bool),  profile(print doctor details) 
--> create two or more doctor object from it
-
-
-Create a class called Patient which has properties like
-patID(string), patName(string), diagnizedFor(string), 
-appointedDoctor(dataType Doctor)->not compulsory. 
-methods like profile(print patient details), consultedDoctorDetails() -> not compulsory;
-
--> create two or more patient object from it
- */
-
 class Doctor {
   late String docID;
   late String docName;
@@ -24,12 +8,25 @@ class Doctor {
   // Doctor() {}
 
   // argumented constructor or parameterized constructor
+  // positional arguments (this is applicable for functions too)
+  // Doctor(
+  //    this.docID,
+  //    this.docName,
+  //    this.specilization,
+  //    this.workingHour,
+  // );
+
+//named arguments  or non-positional arguments (this is applicable for functions too)
   Doctor({
     required this.docID,
     required this.docName,
     required this.specilization,
     required this.workingHour,
   });
+
+//named constructor
+  Doctor.name1() {}
+  Doctor.name2() {}
 
   void profile() {
     print('''
@@ -56,23 +53,6 @@ class Doctor {
   }
 }
 
-class Patient {
-  String? patID;
-  String? patName;
-  String? diagnizedFor;
-  Doctor? appointedDoctor;
-  String? discount;
-
-  void profile() {
-    print('''
-    Patient Name: $patName \t\t Patient Id: $patID\n
-    Diagnized For: $diagnizedFor \t\t Doctor: ${appointedDoctor!.docName}}
-    ''');
-  }
-
-  void consultedDoctorDetails() => appointedDoctor!.profile();
-}
-
 void main(List<String> args) {
   Doctor doctor1 = Doctor(
     workingHour: {'in': 9, 'out': 22},
@@ -83,15 +63,4 @@ void main(List<String> args) {
 
   doctor1.profile();
   print(doctor1.isAvailable());
-
-  // doctor1.docID = '1';
-  // doctor1.specilization = ['GP'];
-
-  // Doctor doctor2 = Doctor();
-  // doctor2.docName = 'David';
-  // doctor2.docID = '2';
-  // doctor2.specilization = ['Derma'];
-  // doctor2.workingHour = {'in': 9, 'out': 18};
-
-  // doctor1.profile();
 }
