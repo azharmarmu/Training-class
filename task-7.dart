@@ -73,17 +73,17 @@ class Wife {
 }
 
 //Error bcz multiple inheritenance
-class Son extends EmployeeSonHusbandAndFather, Wife{
-  String? name;
-}
+// class Son extends EmployeeSonHusbandAndFather, Wife{
+//   String? name;
+// }
 
-//Error bcz multiple inheritenance
-class Daughter extends EmployeeSonHusbandAndFather, Wife{
-  String? name;
-}
+// //Error bcz multiple inheritenance
+// class Daughter extends EmployeeSonHusbandAndFather, Wife{
+//   String? name;
+// }
 
 
-void main(List<String> args) {
-  Manager m1 = Manager();
-  m1.family;
-}
+// void main(List<String> args) {
+//   Manager m1 = Manager();
+//   m1.family;
+// }
