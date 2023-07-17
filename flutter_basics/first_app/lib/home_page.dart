@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: const Color(0xFF6C01F9),
         centerTitle: false,
         title: const Text('Flutter Widgets'),
-        leading: const Icon(Icons.map),
+        
         actions: const [
           Icon(Icons.settings),
           SizedBox(width: 10),

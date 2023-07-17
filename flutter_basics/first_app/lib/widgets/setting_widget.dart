@@ -1,3 +1,4 @@
+import 'package:first_app/settings_page.dart';
 import 'package:flutter/material.dart';
 
 class SettingsWidget extends StatelessWidget {
@@ -5,8 +6,26 @@ class SettingsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Settings'),
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              //do ur logic
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (ctx) {
+                    return const SettingsPage();
+                  },
+                ),
+              );
+            },
+            child: const Text('Go to Settings'),
+          ),
+        ],
+      ),
     );
   }
 }
