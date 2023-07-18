@@ -1,4 +1,5 @@
 import 'package:first_app/settings_page.dart';
+import 'package:first_app/utility/routes.dart';
 import 'package:flutter/material.dart';
 
 class SettingsWidget extends StatelessWidget {
@@ -13,14 +14,27 @@ class SettingsWidget extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               //do ur logic
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (ctx) {
-                    return const SettingsPage();
-                  },
-                ),
-              );
+              //Basic
+
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (ctx) {
+              //       return const SettingsPage(
+              //         args: {
+              //           'notification': true,
+              //           'deactive': false,
+              //         },
+              //       );
+              //     },
+              //   ),
+              // );
+
+              Navigator.pushNamed(context, AppRoutes.settingsPage, arguments: {
+                'notification': true,
+                'deactive': false,
+              });
+              
             },
             child: const Text('Go to Settings'),
           ),

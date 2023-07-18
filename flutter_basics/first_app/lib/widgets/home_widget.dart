@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 import '../assets.dart';
-import '../string.dart';
+import '../utility/string.dart';
 import 'row_widget.dart';
 
 class HomeWidget extends StatelessWidget {

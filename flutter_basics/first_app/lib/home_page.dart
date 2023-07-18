@@ -1,6 +1,6 @@
 import 'package:first_app/assets.dart';
 import 'package:first_app/list_of_items.dart';
-import 'package:first_app/string.dart';
+import 'package:first_app/utility/string.dart';
 import 'package:first_app/widgets/setting_widget.dart';
 import 'package:flutter/material.dart';
 
