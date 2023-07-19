@@ -11,6 +11,13 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   late bool notificationVal;
   late bool deactiveVal;
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passController = TextEditingController();
+
+  bool nameVal = true;
+  bool emailVal = true;
+  bool passVal = true;
 
   late bool isAll;
 
@@ -23,7 +30,6 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   void initState() {
     super.initState();
-    print('initState');
     //statements
     notificationVal = widget.args?['notification'] ?? false;
     deactiveVal = widget.args?['deactive'] ?? false;
@@ -41,8 +47,13 @@ class _SettingsPageState extends State<SettingsPage> {
               Navigator.pop(context);
             }
           },
-          child: const Center(
-            child: Text('EDIT'),
+          child: Center(
+            child: Text(
+              'EDIT',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Colors.black,
+                  ),
+            ),
           ),
         ),
         title: Center(
@@ -105,88 +116,151 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                const Text(
-                  'Notifications',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Text(
+                    'Notifications',
+                    //manual styling
+                    // style: TextStyle(
+                    //   fontSize: 24,
+                    //   fontWeight: FontWeight.bold,
+                    // ),
+                    //theme based styling
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
-                ),
-                const Spacer(),
-                Switch(
-                  value: notificationVal,
-                  onChanged: (bool val) {
-                    a += 10; //    a = a + 10;
-                    notificationVal = val;
-                    setState(() {});
-                  },
-                  thumbColor: MaterialStateProperty.all(
-                    notificationVal ? Colors.red : Colors.grey,
+                  const Spacer(),
+                  Switch(
+                    value: notificationVal,
+                    onChanged: (bool val) {
+                      a += 10; //    a = a + 10;
+                      notificationVal = val;
+                      setState(() {});
+                    },
+                    thumbColor: MaterialStateProperty.all(
+                      notificationVal ? Colors.red : Colors.grey,
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  Text(
+                    'Animate',
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
-                )
-              ],
-            ),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                const Text(
-                  'Animate',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const Spacer(),
-                Checkbox(
-                  value: deactiveVal,
-                  onChanged: (bool? val) {
-                    setState(() {
-                      deactiveVal = val ?? false;
-                      animContainerColor =
-                          deactiveVal ? Colors.amber : Colors.deepPurple;
-                      animContainerTextColor =
-                          !deactiveVal ? Colors.amber : Colors.deepPurple;
+                  const Spacer(),
+                  Checkbox(
+                    value: deactiveVal,
+                    onChanged: (bool? val) {
+                      setState(() {
+                        deactiveVal = val ?? false;
+                        animContainerColor =
+                            deactiveVal ? Colors.amber : Colors.deepPurple;
+                        animContainerTextColor =
+                            !deactiveVal ? Colors.amber : Colors.deepPurple;
 
-                      animContainerFontSize = deactiveVal ? 24 : 20;
-                      animPadding = deactiveVal ? 24 : 12;
-                    });
-                  },
-                )
-              ],
-            ),
-            const SizedBox(height: 8),
-            AnimatedContainer(
-              alignment: Alignment.center,
-              duration: const Duration(
-                milliseconds: 500,
+                        animContainerFontSize = deactiveVal ? 24 : 20;
+                        animPadding = deactiveVal ? 24 : 12;
+                      });
+                    },
+                  )
+                ],
               ),
-              width: 100,
-              height: 100,
-              color: animContainerColor,
-              child: Text(
-                'AnimatedContainer',
-                style: TextStyle(
-                  color: animContainerTextColor,
-                  fontSize: animContainerFontSize,
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
-            Container(
-              color: Colors.brown,
-              child: AnimatedPadding(
-                padding: EdgeInsets.all(animPadding),
+              const SizedBox(height: 8),
+              AnimatedContainer(
+                alignment: Alignment.center,
                 duration: const Duration(
                   milliseconds: 500,
                 ),
-                curve: Curves.easeInCirc,
+                width: double.infinity,
+                height: 100,
+                color: animContainerColor,
+                child: Text(
+                  'Animated Container',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall
+                      ?.copyWith(wordSpacing: 8),
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 12),
+              Container(
+                color: Colors.brown,
+                child: AnimatedPadding(
+                  padding: EdgeInsets.all(animPadding),
+                  duration: const Duration(
+                    milliseconds: 500,
+                  ),
+                  curve: Curves.easeInCirc,
+                ),
+              ),
+              const SizedBox(height: 12),
+              Form(
+                autovalidateMode: AutovalidateMode.disabled,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: nameController,
+                      decoration: InputDecoration(
+                        label: const Text('Enter my name'),
+                        enabled: nameVal,
+                        errorText: 'Name Error',
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          nameVal = true;
+                          return;
+                        }
+                      },
+                    ),
+                    const SizedBox(height: 12),
+                    TextFormField(
+                      controller: emailController,
+                      decoration: InputDecoration(
+                        label: Text('Enter your email'),
+                        enabled: emailVal,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    TextFormField(
+                      obscureText: true,
+                      controller: passController,
+                      decoration: InputDecoration(
+                        label: const Text('Password'),
+                        suffixIcon: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.remove_red_eye),
+                        ),
+                        errorText: 'Error',
+                        enabled: passVal,
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          passVal = true;
+                          return;
+                        }
+                      },
+                    ),
+                    const SizedBox(height: 12),
+                    ElevatedButton(
+                      onPressed: () {
+                        //send data to backend
+                        String name = nameController.text;
+                        String email = emailController.text;
+
+                        print('Name: $name,\t Email: $email');
+                      },
+                      child: const Text('Register'),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

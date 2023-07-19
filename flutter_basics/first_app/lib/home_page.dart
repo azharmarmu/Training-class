@@ -35,12 +35,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //base for every page
       appBar: AppBar(
-        backgroundColor: const Color(0xFF6C01F9),
-        centerTitle: false,
         title: const Text('Flutter Widgets'),
-        
         actions: const [
           Icon(Icons.settings),
           SizedBox(width: 10),
